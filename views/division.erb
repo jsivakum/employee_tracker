@@ -11,7 +11,7 @@
 <% if (!@employees.nil?) %>
 <ul>
   <% @employees.each do  |employee| %>
-    <li><%= employee.name %></li>
+    <li><a href="/employees/<%= employee.id %>"><%= employee.name %></a></li>
   <% end %>
   </ul>
 <% end %>

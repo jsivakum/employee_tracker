@@ -13,10 +13,8 @@ get('/') do
 end
 
 post('/employee') do
-  name = params.fetch('name')
-  division_id = params.fetch('division_id')
-  @division = Division.find(division_id)
-  @employee = @division.employees.create({:name => name})
+  @division = Division.find(params.fetch("division_id"))
+  @employee = @division.employees.create({:name => params.fetch('name')})
   @employees = @division.employees
   erb(:division)
 end
@@ -32,4 +30,17 @@ get('/divisions/:id') do
   @division = Division.find(params.fetch("id").to_i)
   @employees = @division.employees
   erb(:division)
+end
+
+get('/employees/:id') do
+  @employee = Employee.find(params.fetch("id").to_i())
+  @projects = @employee.projects
+  erb(:employee)
+end
+
+post('/project') do
+  @employee = Employee.find(params.fetch("employee_id").to_i())
+  @employee.projects.create({:description => params.fetch("description")})
+  @projects = @employee.projects
+  erb(:employee)
 end
