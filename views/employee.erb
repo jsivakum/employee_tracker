@@ -1,0 +1,16 @@
+<h1>Add Project</h1>
+<form  action="/employee" method="post">
+  <input  name = "name" type="text" placeholder="insert name here">
+  <input type="hidden"  name = "division_id"  value="<%=@division.id %>">
+  <button type="submit">Add Employee</button>
+</form>
+
+<br>
+
+<% if (!@employees.nil?) %>
+<ul>
+  <% @employees.each do  |employee| %>
+  <li><%= employee.name %></li>
+  <% end %>
+</ul>
+<% end %>

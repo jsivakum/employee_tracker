@@ -1,15 +1,15 @@
-<h1>Add Employee</h1>
-<form  action="/employee" method="post">
-  <input id="name" name = "name" type="text" placeholder="insert name here">
-  <button type="submit">Add Employee</button>
+<h1>Add Division</h1>
+<form  action="/division" method="post">
+  <input id="description" name = "description" type="text" placeholder="insert name here">
+  <button type="submit">Add Division</button>
 </form>
 
 <br>
 
-<% if (!@employees.nil?) %>
+<% if (!@divisions.nil?) %>
 <ul>
-  <% @employees.each do  |employee| %>
-    <li><%= employee.name %></li>
+  <% @divisions.each do  |division| %>
+  <li><a href = "/divisions/<%= division.id %>"><%= division.description %> </a> </li>
   <% end %>
-  </ul>
+</ul>
 <% end %>
