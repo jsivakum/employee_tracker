@@ -1,0 +1,15 @@
+<h1>Add Employee</h1>
+<form  action="/employee" method="post">
+  <input id="name" name = "name" type="text" placeholder="insert name here">
+  <button type="submit">Add Employee</button>
+</form>
+
+<br>
+
+<% if (!@employees.nil?) %>
+<ul>
+  <% @employees.each do  |employee| %>
+    <li><%= employee.name %></li>
+  <% end %>
+  </ul>
+<% end %>
