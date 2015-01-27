@@ -8,7 +8,7 @@ require("./lib/project")
 require("pg")
 
 get('/') do
-  @employees = Employee.all()
+  @divisions = Division.all()
   erb(:index)
 end
 
@@ -40,7 +40,25 @@ end
 
 post('/project') do
   @employee = Employee.find(params.fetch("employee_id").to_i())
-  @employee.projects.create({:description => params.fetch("description")})
+  project = @employee.projects.create({:description => params.fetch("description")})
   @projects = @employee.projects
   erb(:employee)
+end
+
+get('/projects/:id') do
+  @project = Project.find(params.fetch("id"))
+  @employees = Employee.all()
+  @project_employees = @project.employees
+  erb(:project)
+end
+
+post('/add_employee') do
+  @project = Project.find(params.fetch("project_id"))
+
+  @employees = Employee.all()
+  @project_employees = @project.employees
+  employee = Employee.find(params.fetch("employee_id").to_i())
+  @project.employees << employee
+
+  erb(:project)
 end

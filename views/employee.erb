@@ -10,7 +10,7 @@
 <% if (!@projects.nil?) %>
 <ul>
   <% @projects.each do  |project| %>
-  <li><%= project.description %></li>
+  <li><a href= "/projects/<%= project.id %>"> <%= project.description %></a></li>
   <% end %>
 </ul>
 <% end %>
